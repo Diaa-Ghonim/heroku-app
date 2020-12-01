@@ -2,6 +2,20 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_DB_URI || 'mongodb://localhost:27017/test',
+  {
+    useNewUrlParser: true, useUnifiedTopology: true
+  }
+);
+const Cat = mongoose.model('Cat', { name: String });
+const kitty = new Cat({ name: 'kitty' });
+kitty.save().then(() => console.log('meow'));
+app.get('/kitty', (req, res) => {
+  Cat.find({}).then(res => {
+    res.json(res);
+  })
+})
 const port = process.env.PORT || 8080;
 app.use('/static', express.static(path.join(__dirname, '..')))
 

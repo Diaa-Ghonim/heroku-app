@@ -1,8 +1,7 @@
 
-const timeout = 1000;
-for (let i = 0; i < 20; i++) {
-  setTimeout(() => {
-    console.log('app is instanitiated')
-  }, i * timeout);
-
-}
+document.getElementById('get-kitty').addEventListener('click', (e) => {
+  fetch('https://dcb-heroku-app.herokuapp.com/kitty')
+    .then(res => res.json())
+    .then(kitty => console.log(kitty))
+    .catch(console.log)
+})
