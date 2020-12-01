@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
+app.use(cors());
+
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_DB_URI || 'mongodb://localhost:27017/test',
   {
@@ -28,7 +30,6 @@ app.post('kitty', (req, res) => {
 
 const port = process.env.PORT || 8080;
 app.use('/static', express.static(path.join(__dirname, '..')))
-app.use(cors());
 
 
 
