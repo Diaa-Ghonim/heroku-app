@@ -12,8 +12,9 @@ const Cat = mongoose.model('Cat', { name: String });
 const kitty = new Cat({ name: 'kitty' });
 kitty.save().then(() => console.log('meow'));
 app.get('/kitty', (req, res) => {
-  Cat.find({}).then(res => {
-    res.json(res);
+  console.log('reuest to get kitty')
+  Cat.find({}).then(kitty => {
+    res.json(kitty);
   })
 })
 const port = process.env.PORT || 8080;

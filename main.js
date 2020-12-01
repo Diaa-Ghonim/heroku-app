@@ -1,6 +1,6 @@
 
 document.getElementById('get-kitty').addEventListener('click', (e) => {
-  fetch('https://dcb-heroku-app.herokuapp.com/kitty')
+  fetch('http://localhost:8080/kitty')
     .then(res => res.json())
     .then(kitty => console.log(kitty))
     .catch(console.log)
