@@ -21,11 +21,11 @@ app.get('/kitty', (req, res) => {
   })
 });
 
-app.post('kitty', (req, res) => {
+app.post('/kitty', (req, res) => {
   const anotherKitty = new Cat(req.body);
   anotherKitty.save().then(d => {
     res.json(d);
-  });
+  }).catch(console.log);
 });
 
 const port = process.env.PORT || 8080;
