@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-app.use(cors());
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_DB_URI || 'mongodb://localhost:27017/test',
   {
@@ -18,9 +17,18 @@ app.get('/kitty', (req, res) => {
   Cat.find({}).then(kitty => {
     res.json(kitty);
   })
-})
+});
+
+app.post('kitty', (req, res) => {
+  const anotherKitty = new Cat(req.body);
+  anotherKitty.save().then(d => {
+    res.json(d);
+  });
+});
+
 const port = process.env.PORT || 8080;
 app.use('/static', express.static(path.join(__dirname, '..')))
+app.use(cors());
 
 
 
