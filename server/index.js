@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require('cors');
+app.use(cors());
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_DB_URI || 'mongodb://localhost:27017/test',
   {
